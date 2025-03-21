@@ -37,6 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnTestLinq = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,14 +117,36 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(529, 395);
+            this.dataGridView1.Size = new System.Drawing.Size(738, 402);
             this.dataGridView1.TabIndex = 8;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(28, 284);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(144, 23);
+            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnTestLinq
+            // 
+            this.btnTestLinq.Location = new System.Drawing.Point(28, 383);
+            this.btnTestLinq.Name = "btnTestLinq";
+            this.btnTestLinq.Size = new System.Drawing.Size(144, 23);
+            this.btnTestLinq.TabIndex = 10;
+            this.btnTestLinq.Text = "test linq ";
+            this.btnTestLinq.UseVisualStyleBackColor = true;
+            this.btnTestLinq.Click += new System.EventHandler(this.btnTestLinq_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1001, 508);
+            this.Controls.Add(this.btnTestLinq);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.tbMaxSal);
@@ -151,6 +175,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnTestLinq;
     }
 }
 

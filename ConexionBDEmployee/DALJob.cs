@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,11 +35,12 @@ namespace ConexionBDEmployee
                     int jobId = Convert.ToInt32(records["job_id"]);
                     string jobName = records["job_title"].ToString();
                     decimal? min = records.IsDBNull(records.GetOrdinal("min_salary")) 
-                    ? (decimal?)null : records.GetDecimal(records.GetOrdinal("min_salary"));
+                    ? (decimal?) null : records.GetDecimal(records.GetOrdinal("min_salary"));
 
-                    decimal max = 0;
+                    decimal? max = records.IsDBNull(records.GetOrdinal("max_salary"))
+                    ? (decimal?) null : records.GetDecimal(records.GetOrdinal("max_salary"));
 
-                    Job job = new Job(jobId, jobName, (decimal)min, max);
+                    Job job = new Job(jobId, jobName, (decimal?)min, (decimal?)max);
                     jobs.Add(job);
                 }
                 records.Close();
@@ -71,20 +73,20 @@ VALUES (@ptitle,@pmin,@pmax)"
                 insert.Parameters.Add(pmin);
                 pmin.Precision = 8;
                 pmin.Scale = 2;
-                pmin.Value = j.MinSal;
+                pmin.Value = j.MinSal == null ? (object)DBNull.Value : j.MinSal;
 
                 SqlParameter pmax = new SqlParameter("@pmax", SqlDbType.Decimal);
                 insert.Parameters.Add(pmax);
                 pmax.Precision = 8;
                 pmax.Scale = 2;
-                pmax.Value = j.MaxSal;
+                pmax.Value = j.MaxSal == null ? (object)DBNull.Value : j.MaxSal;
 
                 insert.ExecuteNonQuery();
                 conn.CerarConexion();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("error save " + ex.Message);
             }
             
         }

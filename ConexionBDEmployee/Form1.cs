@@ -53,11 +53,49 @@ namespace ConexionBDEmployee
         private void btnSave_Click(object sender, EventArgs e)
         {
             var minSal = tbMinSal.Text;
-            decimal max = decimal.Parse(tbMaxSal.Text);
-            decimal min = decimal.Parse(tbMinSal.Text);
+            decimal? max = string.IsNullOrWhiteSpace(tbMaxSal.Text)
+    ? (decimal?)null
+    : decimal.Parse(tbMaxSal.Text);
+
+            decimal? min = string.IsNullOrWhiteSpace(tbMinSal.Text)
+    ? (decimal?)null
+    : decimal.Parse(tbMinSal.Text);
             string tit = tbJob.Text;
             jobDAL.SaveJob(new Job(0, tit, min, max));
         }
-        
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Information Updated", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnTestLinq_Click(object sender, EventArgs e)
+        {
+            DataClassDataContext dc = new DataClassDataContext();
+            var data1 = dc.employees.Where(query => query.first_name.StartsWith("s")).Select(x => new { x.first_name, x.last_name });
+            var data = dc.employees.Select(x => new { x.first_name, x.last_name});
+            var data2 = from emp in dc.employees
+                        select emp; // new { emp.first_name, emp.last_name};
+
+            foreach ( var emp in data)
+            {
+                string f = emp.first_name;
+                string l = emp.last_name;
+            }
+
+            foreach (var emp in data2)
+            {
+                string f = emp.first_name;
+                string l = emp.last_name;
+                int? id = emp.employee_id;
+            }
+
+            foreach (var emp in data2)
+            {
+                emp.first_name = "x"+ emp.first_name;
+                
+            }
+
+        } 
     }
 }

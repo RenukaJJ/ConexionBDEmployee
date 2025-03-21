@@ -9,9 +9,11 @@ namespace ConexionBDEmployee
     internal class Job
     {
         private int id;
-        private decimal maxSal;
-        private decimal minSal;
+        private decimal? maxSal;
+        private decimal? minSal;
         private string title;
+
+        
 
         public int Id
         {
@@ -19,13 +21,13 @@ namespace ConexionBDEmployee
             set { id = value; }
         }
 
-        public decimal MaxSal
+        public decimal? MaxSal
         {
             get { return maxSal; }
             set { maxSal = value; }
         }
 
-        public decimal MinSal
+        public decimal? MinSal
         {
             get { return minSal; }
             set { minSal = value; }
@@ -36,13 +38,14 @@ namespace ConexionBDEmployee
             get { return title; }
             set { title = value; }
         }
-
-        public Job(int id, string tit, decimal min, decimal max)
+        
+        public Job(int id, string tit, decimal? min, decimal? max)
         {
             this.Id = id;
             this.Title = tit;
             this.MinSal = min;  
             this.MaxSal = max;
         }
+        
     }
 }
